@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Odin Project</title>
+</head>
+<body>
+    <script>
+        // Funcion que retorna un string para la eleccion de la PC.
+        let getComputerChoice = () => {
+            // Array que contiene las opciones de la PC.
+            let choices = ["Paper", "Rock", "Scissors"];
+            // Variable con obtiene el string random.
+            let finalChoice = choices[Math.floor(Math.random() * choices.length)];
+            // Se retorna el valor final.
+            return finalChoice;
+        }
+
+        // Funcion que juega un round. Recibe 2 parametros.
+        let playRound = (playerSelection, computerSelection) => {
+            // Convertir el valor del parametro playerSelection para que sea case-sensitive.
+            // Declarar dos variables para recortar el string
+            let firstChar = playerSelection.slice(0,1);
+            let restOfString = playerSelection.slice(1)
+            let getPlayerSelection = firstChar.toUpperCase() + restOfString.toLowerCase();
+            console.log(getPlayerSelection);
+
+        }
+
+        playRound("ROCK", "Dadad");
+    </script>
+</body>
+</html>
