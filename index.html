@@ -21,15 +21,44 @@
         // Funcion que juega un round. Recibe 2 parametros.
         let playRound = (playerSelection, computerSelection) => {
             // Convertir el valor del parametro playerSelection para que sea case-sensitive.
-            // Declarar dos variables para recortar el string
+            // Variable que recorta y almacena el primer caracter de playerSelection.
             let firstChar = playerSelection.slice(0,1);
+            // Variable que recorta y almacena el segundo caracter y los restantes.
             let restOfString = playerSelection.slice(1)
+            // Variable que almacena la concatenacion de las variables anteriores.
             let getPlayerSelection = firstChar.toUpperCase() + restOfString.toLowerCase();
-            console.log(getPlayerSelection);
-
+            // IFs multiples para cada seleccion..
+            if (getPlayerSelection === "Paper" || computerSelection === "Rock") {
+                return "You Win! Paper beats Rock";
+            } else if (getPlayerSelection === "Paper" || computerSelection === "Paper") {
+                return "Draw!";
+            } else if (getPlayerSelection === "Paper" || computerSelection === "Scissors") {
+                return "You Lose! Scissors beats Paper";
+            } else if (getPlayerSelection === "Rock" || computerSelection === "Rock") {
+                return "Draw";
+            } else if (getPlayerSelection === "Rock" || computerSelection === "Paper") {
+                return "You Lose! Paper beats Rock";
+            } else if (getPlayerSelection === "Rock" || computerSelection === "Scissors") {
+                return "You Win! Rock beats Scissors";
+            } else if (getPlayerSelection === "Scissors" || computerSelection === "Rock") {
+                return "You Lose! Rock beats Scissors";
+            } else if (getPlayerSelection === "Scissors" || computerSelection === "Paper") {
+                return "You Win! Scissors beats Paper";
+            } else if (getPlayerSelection === "Scissors" || computerSelection === "Scissors") {
+                return "Draw";
+            } 
         }
 
-        playRound("ROCK", "Dadad");
+        
+
+
+
+
+
+
+        const computerSelection = getComputerChoice();
+        console.log(playRound("RoCK", computerSelection));
+        
     </script>
 </body>
 </html>
