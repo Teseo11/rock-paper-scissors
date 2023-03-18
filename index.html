@@ -1,64 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors - Odin Project</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // Funcion que retorna un string para la eleccion de la PC.
-        let getComputerChoice = () => {
-            // Array que contiene las opciones de la PC.
-            let choices = ["Paper", "Rock", "Scissors"];
-            // Variable con obtiene el string random.
-            let finalChoice = choices[Math.floor(Math.random() * choices.length)];
-            // Se retorna el valor final.
-            return finalChoice;
+      let playerScore = 0;
+      let pcScore = 0;
+
+      let getComputerChoice = () => {
+        let choices = ["Paper", "Rock", "Scissors"];
+        let finalChoice = choices[Math.floor(Math.random() * choices.length)];
+        return finalChoice;
+      };
+
+      let playRound = (playerSelection, computerSelection) => {
+        let firstChar = playerSelection.slice(0, 1);
+        let restOfString = playerSelection.slice(1);
+        let getPlayerSelection =
+          firstChar.toUpperCase() + restOfString.toLowerCase();
+
+        if (getPlayerSelection === "Paper" && computerSelection === "Rock") {
+          return `You win! paper beats rock - Player has ${++playerScore} point.`;
+        } else if (
+          getPlayerSelection === "Paper" &&
+          computerSelection === "Scissors"
+        ) {
+          return `${++pcScore} You lose! scissors beats paper`;
+        } else if (
+          getPlayerSelection === "Paper" &&
+          computerSelection === "Paper"
+        ) {
+          return "Draw!";
+        } else if (
+          getPlayerSelection === "Rock" &&
+          computerSelection === "Scissors"
+        ) {
+          return `${++playerScore} You win! rock beats scissors`;
+        } else if (
+          getPlayerSelection === "Rock" &&
+          computerSelection === "Paper"
+        ) {
+          return `${++pcScore} You lose! paper beats rock`;
+        } else if (
+          getPlayerSelection === "Rock" &&
+          computerSelection === "Rock"
+        ) {
+          return "Draw!";
+        } else if (
+          getPlayerSelection === "Scissors" &&
+          computerSelection === "Paper"
+        ) {
+          return `${++playerScore} You win! scissors beats paper`;
+        } else if (
+          getPlayerSelection === "Scissors" &&
+          computerSelection === "Rock"
+        ) {
+          return `${++pcScore} You lose! scissors beats rock`;
+        } else if (
+          getPlayerSelection === "Scissors" &&
+          computerSelection === "Scissors"
+        ) {
+          return "Draw";
         }
+      };
 
-        // Funcion que juega un round. Recibe 2 parametros.
-        let playRound = (playerSelection, computerSelection) => {
-            // Convertir el valor del parametro playerSelection para que sea case-sensitive.
-            // Variable que recorta y almacena el primer caracter de playerSelection.
-            let firstChar = playerSelection.slice(0,1);
-            // Variable que recorta y almacena el segundo caracter y los restantes.
-            let restOfString = playerSelection.slice(1)
-            // Variable que almacena la concatenacion de las variables anteriores.
-            let getPlayerSelection = firstChar.toUpperCase() + restOfString.toLowerCase();
-            // IFs multiples para cada seleccion..
-            if (getPlayerSelection === "Paper" || computerSelection === "Rock") {
-                return "You Win! Paper beats Rock";
-            } else if (getPlayerSelection === "Paper" || computerSelection === "Paper") {
-                return "Draw!";
-            } else if (getPlayerSelection === "Paper" || computerSelection === "Scissors") {
-                return "You Lose! Scissors beats Paper";
-            } else if (getPlayerSelection === "Rock" || computerSelection === "Rock") {
-                return "Draw";
-            } else if (getPlayerSelection === "Rock" || computerSelection === "Paper") {
-                return "You Lose! Paper beats Rock";
-            } else if (getPlayerSelection === "Rock" || computerSelection === "Scissors") {
-                return "You Win! Rock beats Scissors";
-            } else if (getPlayerSelection === "Scissors" || computerSelection === "Rock") {
-                return "You Lose! Rock beats Scissors";
-            } else if (getPlayerSelection === "Scissors" || computerSelection === "Paper") {
-                return "You Win! Scissors beats Paper";
-            } else if (getPlayerSelection === "Scissors" || computerSelection === "Scissors") {
-                return "Draw";
-            } 
+      let getInput = () => {
+        let getChoiceFromPlayer = prompt("Rock, paper or scissors?: ");
+        return getChoiceFromPlayer;
+      };
+
+      let game = () => {
+        for (let i = 0; i < 5; i++) {
+          console.log(playRound(getInput(), getComputerChoice()));
         }
+        if (playerScore > pcScore) {
+          return console.log(`Player wins. ${playerScore} to ${pcScore}`);
+        } else if (playerScore < pcScore) {
+          return console.log(`PC wins. ${pcScore} to ${playerScore}`);
+        } else {
+          return console.log(`Draw. ${pcScore} to ${playerScore}`);
+        }
+      };
 
-        
-
-
-
-
-
-
-        const computerSelection = getComputerChoice();
-        console.log(playRound("RoCK", computerSelection));
-        
+      game();
     </script>
-</body>
+  </body>
 </html>
