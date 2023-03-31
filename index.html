@@ -5,108 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors - Odin Project</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/1cc1d82c1f.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <script>
-      // Variables de scope global, sirven para ir agregando los puntos de cada
-      // ronda jugada.
-      let playerScore = 0;
-      let pcScore = 0;
+    <div class="container">
+      <header class="header">
+        <h1>Rock, paper and scissors!</h1>
+        <p>First to score 5 points wins the game!!</p>
+      </header>
 
-      // Funcion para obtener la eleccion "random" de la PC.
-      let getComputerChoice = () => {
-        // Array con 3 opciones.
-        let choices = ["Paper", "Rock", "Scissors"];
-        // Variable la cual, almacena la opcion para la PC.
-        let finalChoice = choices[Math.floor(Math.random() * choices.length)];
-        return finalChoice;
-      };
+      <main>
+        <div class="buttons">
+          <button id="rock">
+            <i class="fa-solid fa-hand-back-fist fa-bounce"></i>Rock
+          </button>
+          <button id="paper">
+            <i class="fa-solid fa-hand fa-bounce"></i>Paper
+          </button>
+          <button id="scissors">
+            <i class="fa-solid fa-hand-scissors fa-bounce"></i>Scissors
+          </button>
+          <button id="restart">
+            <i class="fa-solid fa-backward"></i>Restart
+          </button>
+        </div>
 
-      // Funcion que se encarga de jugar 1 round.
-      // Recibe dos parametros, primero la seleccion del jugador y luego, la PC.
-      let playRound = (playerSelection, computerSelection) => {
-        // Debo "convertir el string del usuario para que sea case-sensitive"
-
-        // Primero, hago un slice al primer caracter y guardar en una variable.
-        let firstChar = playerSelection.slice(0, 1);
-        // Segundo, otro slice pero a todo los caracteres sin contar el primer caracter
-        let restOfString = playerSelection.slice(1);
-        // Por ultimo, paso a mayus y minus a firstChar y resOfString respectivamente.
-        // Concateno las dos variables y almaceno su valor en otra variable final.
-        let getPlayerSelection =
-          firstChar.toUpperCase() + restOfString.toLowerCase();
-
-        // Varios IF`s que dependiendo de la eleccion de usuario/PC, se retornara tal
-        // resultado.
-        
-
-        if (getPlayerSelection === "Paper" && computerSelection === "Rock") {
-          return `You win! paper beats rock - Player has ${++playerScore} points.`;
-        } else if (
-          getPlayerSelection === "Paper" &&
-          computerSelection === "Scissors"
-        ) {
-          return `You lose! scissors beats paper - PC has ${++pcScore} points`;
-        } else if (
-          getPlayerSelection === "Paper" &&
-          computerSelection === "Paper"
-        ) {
-          return "Draw! nobody get a point!";
-        } else if (
-          getPlayerSelection === "Rock" &&
-          computerSelection === "Scissors"
-        ) {
-          return `You win! rock beats scissors - Player has ${++playerScore} points`;
-        } else if (
-          getPlayerSelection === "Rock" &&
-          computerSelection === "Paper"
-        ) {
-          return `You lose! paper beats rock - PC has ${++pcScore} points`;
-        } else if (
-          getPlayerSelection === "Rock" &&
-          computerSelection === "Rock"
-        ) {
-          return "Draw! nobody get a point!";
-        } else if (
-          getPlayerSelection === "Scissors" &&
-          computerSelection === "Paper"
-        ) {
-          return `You win! scissors beats paper - Player has ${++playerScore} points`;
-        } else if (
-          getPlayerSelection === "Scissors" &&
-          computerSelection === "Rock"
-        ) {
-          return `You lose! scissors beats rock - PC has ${++pcScore} points`;
-        } else if (
-          getPlayerSelection === "Scissors" &&
-          computerSelection === "Scissors"
-        ) {
-          return "Draw! nobody get a point!";
-        }
-      };
-
-      // Funcion para obtener/almacenar la opcion del usuario.
-      let getInput = () => {
-        let getChoiceFromPlayer = prompt("What do you choose?, rock, paper or scissors?");
-        return getChoiceFromPlayer;
-      };
-
-      // Funcion que se encarga de realizar 5 rondas del juego.
-      let game = () => {
-        for (let i = 0; i < 5; i++) {
-          console.log(playRound(getInput(), getComputerChoice()));
-        }
-        // IF para determinar el ganador final.
-        if (playerScore > pcScore) {
-          return console.log(`Final result: Player wins. ${playerScore} to ${pcScore}`);
-        } else if (playerScore < pcScore) {
-          return console.log(`Final result: PC wins. ${pcScore} to ${playerScore}`);
-        } else {
-          return console.log(`Final result: draw. ${pcScore} to ${playerScore}`);
-        }
-      };
-
-      game();
-    </script>
+        <div class="scores">
+          <div class="player-box">
+            <i class="fa-regular fa-user fa-xl" style="color: #ffffff"></i>
+            <label>Player score:</label>
+            <div id="player-score">0</div>
+          </div>
+          <div class="computer-box">
+            <i class="fa-solid fa-computer fa-xl" style="color: #ffffff"></i>
+            <label>Computer score:</label>
+            <div id="computer-score">0</div>
+          </div>
+          <div class="info">
+            <div id="who-won"></div>
+            <div id="final-result"></div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        Dani - Odin Project - Revisiting Rock, paper and scissors
+      </footer>
+    </div>
   </body>
 </html>
